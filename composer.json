@@ -1,0 +1,26 @@
+{
+    "name": "glasscode/persianfaker",
+    "description": "the faker package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "amirhossein hadavand",
+            "email": "amirhosseinhadavand@yahoo.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GlassCode\\PersianFaker\\PersianFakerServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "GlassCode\\PersianFaker\\": "src/"
+        }
+    }
+}
