@@ -10,21 +10,22 @@ class PersianFaker
     public static function get($value)
     {
         if (file_exists(self::$path . $value . self::$extension)) {
-            return include_once self::$path . $value . self::$extension;
+
+            $data = include_once self::$path . $value . self::$extension;
+            return $data[array_rand($data)];
         }
         return null;
     }
 
     public static function name()
     {
-        $names = self::get('Name');
-        return $names[array_rand($names)];
+        return self::get('Name');
     }
 
     public static function lastname()
     {
-        $names = self::get('Lastname');
-        return $names[array_rand($names)];
+        return self::get('Lastname');
+
 
     }
 
@@ -42,10 +43,10 @@ class PersianFaker
      * @example 09123456789
      *
      */
-    public static function phone($oprator = null)
+    public static function phone($operator = null)
     {
         $number = 0;
-        switch ($oprator) {
+        switch ($operator) {
             case 'mci' :
                 $number = '0912';
                 break;
@@ -61,6 +62,12 @@ class PersianFaker
         }
         return $number . mt_rand(1000000, 9999999);
     }
+
+    public static function certificate()
+    {
+        return self::get('Certificate');
+    }
+
 
 
 }
