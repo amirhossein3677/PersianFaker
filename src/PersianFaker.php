@@ -7,13 +7,19 @@ class PersianFaker
     private static $path = __DIR__ . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
     private static $extension = '.php';
 
-    public static function get($value)
+    public static function get($value, array $array = null)
     {
-        if (file_exists(self::$path . $value . self::$extension)) {
-
-            $data = include_once self::$path . $value . self::$extension;
-            return $data[array_rand($data)];
+        if (!$array) {
+            if (file_exists(self::$path . $value . self::$extension)) {
+                $data = include_once self::$path . $value . self::$extension;
+                return $data[array_rand($data)];
+            }
+        } else {
+            $method = $array['method'];
+            $class = 'GlassCode\PersianFaker\lib\\' . $value;
+            return $class::$method($array['value']);
         }
+
         return null;
     }
 
@@ -45,22 +51,7 @@ class PersianFaker
      */
     public static function phone($operator = null)
     {
-        $number = 0;
-        switch ($operator) {
-            case 'mci' :
-                $number = '0912';
-                break;
-            case 'rightel' :
-                $number = '0921';
-                break;
-            case 'irancell':
-                $number = '0935';
-                break;
-            default :
-                $number = '09' . mt_rand(10, 99);
-
-        }
-        return $number . mt_rand(1000000, 9999999);
+        return self::get('Phone', ['method' => 'generate', 'value' => $operator]);
     }
 
     public static function certificate()
@@ -68,6 +59,35 @@ class PersianFaker
         return self::get('Certificate');
     }
 
+    public static function job()
+    {
+        return self::get('Job');
+    }
+
+    public static function company()
+    {
+        return self::get('Company');
+    }
+
+    public static function domain()
+    {
+        return self::get('Domain');
+    }
+
+    public static function address()
+    {
+        return self::get('Address');
+    }
+
+    public static function state()
+    {
+        return self::get('State');
+    }
+
+    public static function city()
+    {
+        return self::get('City');
+    }
 
 
 }
