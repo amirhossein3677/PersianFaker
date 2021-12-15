@@ -89,5 +89,25 @@ class PersianFaker
         return self::get('City');
     }
 
+    public static function word()
+    {
+        return self::get('Word');
+    }
+
+    public static function email(string $operator = null)
+    {
+        return self::get('Email', ['method' => 'generate', 'value' => $operator]);
+    }
+
+    public static function paragraph(int $count = 1) : string
+    {
+        $lorem = self::get('Paragraph');
+        return str_repeat($lorem , $count);
+    }
+
+    public static function sentence()
+    {
+        return self::get('Sentence');
+    }
 
 }
