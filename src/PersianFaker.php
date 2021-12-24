@@ -11,7 +11,7 @@ class PersianFaker
     {
         if (!$array) {
             if (file_exists(self::$path . $value . self::$extension)) {
-                $data = include_once self::$path . $value . self::$extension;
+                $data = include self::$path . $value . self::$extension;
                 return $data[array_rand($data)];
             }
         } else {
